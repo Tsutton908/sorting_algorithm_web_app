@@ -69,33 +69,30 @@ function doMerge(
     let j = middleIdx + 1;
 
     while (i <= middleIdx && j <= endIdx) {
-        const animation = {};
-
-        animation.comparison = [i,j];
+        animations.push([i, j]);
+        animations.push([i, j]);
 
         if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-            animation.swap = [k, i];
+            animations.push([k, auxiliaryArray[i]]);
             mainArray[k++] = auxiliaryArray[i++];
         } else {
-            animation.swap = [k, j];
+            animations.push([k, auxiliaryArray[j]]);
             mainArray[k++] = auxiliaryArray[j++];
         }
-        animations.push(animation);
     }
 
     while (i <= middleIdx) {
-        animations.push({
-            comparison: [i,i],
-            swap: [k, i],
-        });
+        animations.push([i, i]);
+        animations.push([i, i]);
+        animations.push([k, auxiliaryArray[i]]);
         mainArray[k++] = auxiliaryArray[i++];
     }
 
     while (j <= endIdx) {
-        animations.push({
-            comparison: [j,j],
-            swap: [k, j],
-        });
+        animations.push([j, j]);
+        animations.push([j, j]);
+
+        animations.push([k, auxiliaryArray[i]]);
         mainArray[k++] = auxiliaryArray[j++];
     }
 }
