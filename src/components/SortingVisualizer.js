@@ -4,7 +4,7 @@ import '../styles/sortingVisualizer.css';
 import  mergeSort from './sortingAlgorithms/mergeSort';
 
 const NumberOfArrayBars = 310;
-const AnimationSpeed = 3;
+const AnimationSpeed = 1;
 
 
 export default class SortingVisualizer extends React.Component {
@@ -21,11 +21,17 @@ export default class SortingVisualizer extends React.Component {
 
     resetArray() {
         const array= [];
+        
         for (let i = 0; i < NumberOfArrayBars; i++) {
             array.push(randomIntFromInterval(5, 730));
         }
+        
         this.setState({array});
     }
+
+    /*resetColor() {
+        document.getElementsByClassName('array-bar').style.backgroundColor = 'blue';
+    } */
 
     mergeSort() {
         const animations = mergeSort(this.state.array);
@@ -72,7 +78,7 @@ export default class SortingVisualizer extends React.Component {
 
         return (
             <div>
-            <button onClick={() => this.resetArray()}>Generate New Array</button>
+            <button onClick={() => this.resetArray() }>Generate New Array</button>
             <button onClick={() => this.mergeSort()}>Merge Sort</button>
             <button onClick={() => this.quickSort()}>Quick Sort</button>
             <button onClick={() => this.heapSort()}>Heap Sort</button>
@@ -87,7 +93,6 @@ export default class SortingVisualizer extends React.Component {
                     </div>
                 ))}
             </div>
-            <button onClick={() => this.mergeSort()} className='test'>Merge Sort</button>
             </div>
         );
     }
