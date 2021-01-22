@@ -65,7 +65,9 @@ export default class SortingVisualizer extends React.Component {
     }
 
     quickSort() {
-        
+        const animations = quickSort(this.state.array, 0, this.state.array.length - 1);
+
+        console.log(animations);
     }
 
     heapSort() {
@@ -73,7 +75,6 @@ export default class SortingVisualizer extends React.Component {
     }
 
     bubbleSort() {
-        console.log(this.state.array);
         const animations = bubbleSort(this.state.array);
 
         /*for (let i = 0; i < animations.length; i++) {
@@ -100,7 +101,7 @@ export default class SortingVisualizer extends React.Component {
             }
         }
         */
-        console.log(animations);
+        //console.log(animations);
     }
 
     render() {
