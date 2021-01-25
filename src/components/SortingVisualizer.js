@@ -4,6 +4,7 @@ import '../styles/sortingVisualizer.css';
 import  mergeSort from './sortingAlgorithms/mergeSort';
 import quickSort from './sortingAlgorithms/quickSort';
 import bubbleSort from './sortingAlgorithms/bubbleSort';
+import selectionSort from './sortingAlgorithms/selectionSort';
 
 const NumberOfArrayBars = 310;
 const AnimationSpeed = 1;
@@ -19,6 +20,7 @@ export default class SortingVisualizer extends React.Component {
 
     componentDidMount() {
         this.resetArray();
+        this.resetColor();
     }
 
     resetArray() {
@@ -31,9 +33,14 @@ export default class SortingVisualizer extends React.Component {
         this.setState({array});
     }
 
-    /*resetColor() {
-        document.getElementsByClassName('array-bar').style.backgroundColor = 'blue';
-    } */
+    resetColor() {
+        //document.getElementsByClassName('array-bar').style.backgroundColor = 'blue';
+        let blocks = document.querySelectorAll(".array-bar");
+        /*for (var j = 0; j < this.state.array.length; j++) {
+            blocks[j].style.backgroundColor = "blue";
+        } */
+        blocks.style.backgroundColor = "blue";
+    } 
 
     mergeSort() {
         const animations = mergeSort(this.state.array);
@@ -72,6 +79,10 @@ export default class SortingVisualizer extends React.Component {
 
     heapSort() {
 
+    }
+
+    selectionSort() {
+        const animations = selectionSort(this.state.array);
     }
 
     bubbleSort() {
@@ -114,6 +125,7 @@ export default class SortingVisualizer extends React.Component {
             <button onClick={() => this.quickSort()}>Quick Sort</button>
             <button onClick={() => this.heapSort()}>Heap Sort</button>
             <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+            <button onClick={() => this.selectionSort()}>Selection Sort</button>
             <div className="array-container">
                 {array.map((value,idx) => (
                     <div 
