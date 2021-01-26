@@ -5,8 +5,9 @@ import  mergeSort from './sortingAlgorithms/mergeSort';
 import quickSort from './sortingAlgorithms/quickSort';
 import bubbleSort from './sortingAlgorithms/bubbleSort';
 import selectionSort from './sortingAlgorithms/selectionSort';
+import Slider from './Slider';
 
-const NumberOfArrayBars = 310;
+//const NumberOfArrayBars = 310;
 const AnimationSpeed = 1;
  
 
@@ -17,6 +18,13 @@ export default class SortingVisualizer extends React.Component {
             array: [],
             sorted: false,
             backgroundColor: "red",
+            speed: {
+                value: 2,
+                min: 1,
+                max: 100,
+
+            },
+            numberOfArrayBars: 310,
         };
     }
 
@@ -28,7 +36,7 @@ export default class SortingVisualizer extends React.Component {
     resetArray() {
         const array= [];
         
-        for (let i = 0; i < NumberOfArrayBars; i++) {
+        for (let i = 0; i < this.state.numberOfArrayBars; i++) {
             array.push(randomIntFromInterval(5, 730));
         }
         
@@ -129,11 +137,28 @@ export default class SortingVisualizer extends React.Component {
         //console.log(animations);
     }
 
+
     render() {
         const {array} = this.state;
 
         //let backgroundColor = this.state.sorted ? "red" : "green";
         let background = this.state.backgroundColor;
+
+        /*
+        const [option, setOptions] = useState(this.state.speed);
+        const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
+        const selectedOption = option[selectedOptionIndex];
+
+        function handleSliderChange({ target }) {
+            setOptions(prevOptions => {
+                return prevOptions.map((option, index) => {
+                    if (index !== selectedOptionIndex) {
+                        return option;
+                    }
+                    return { ...option, value: target.value};
+                });
+            })
+        }; */
 
         return (
             <div>
@@ -143,6 +168,27 @@ export default class SortingVisualizer extends React.Component {
             <button onClick={() => this.heapSort()}>Heap Sort</button>
             <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
             <button onClick={() => this.selectionSort()}>Selection Sort</button>
+            <input
+                id="changeSize"
+                type="range"
+                value={this.state.numberOfArrayBars}
+                min="1"
+                max="310"
+                style={{background: "green", cursor: "pointer"}}
+                onChange={(event) => {
+                    var array= [];
+
+                    this.setState({
+                        numberOfArrayBars: event.target.value,
+                    })
+
+                    for (let i = 0; i < this.state.numberOfArrayBars; i++) {
+                        array.push(randomIntFromInterval(5, 730));
+                    }
+                    
+                    this.setState({array});
+                }}
+            />
             <div className="array-container">
                 {array.map((value,idx) => (
                     <div 
