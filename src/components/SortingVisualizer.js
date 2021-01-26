@@ -8,19 +8,21 @@ import selectionSort from './sortingAlgorithms/selectionSort';
 
 const NumberOfArrayBars = 310;
 const AnimationSpeed = 1;
-
+ 
 
 export default class SortingVisualizer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             array: [],
+            sorted: false,
+            backgroundColor: "red",
         };
     }
 
     componentDidMount() {
         this.resetArray();
-        this.resetColor();
+        //this.resetColor();
     }
 
     resetArray() {
@@ -31,16 +33,26 @@ export default class SortingVisualizer extends React.Component {
         }
         
         this.setState({array});
+
+        //this.setState.sorted=false;
+        this.setState({
+            backgroundColor: "blue"
+        });
+        /*const arrayBars = document.getElementsByClassName('array-bar');
+        const resetColor = arrayBars.style;
+        resetColor.backgroundColor = this.state.backgroundColor;
+        */
+       this.resetColor(this.state.backgroundColor);
     }
 
-    resetColor() {
-        //document.getElementsByClassName('array-bar').style.backgroundColor = 'blue';
+    resetColor(backgroundColor) {
+        //document.getElementsByClassName('array-bar').style.backgroundColor = backgroundColor;
         let blocks = document.querySelectorAll(".array-bar");
-        /*for (var j = 0; j < this.state.array.length; j++) {
-            blocks[j].style.backgroundColor = "blue";
-        } */
-        blocks.style.backgroundColor = "blue";
-    } 
+        for (var j = 0; j < this.state.array.length; j++) {
+            blocks[j].style.backgroundColor = backgroundColor;
+        }  
+        //blocks.style.backgroundColor = "blue";
+    }  
 
     mergeSort() {
         const animations = mergeSort(this.state.array);
@@ -69,6 +81,8 @@ export default class SortingVisualizer extends React.Component {
             }
         }
         console.log(animations);
+        //this.setState.sorted=true;
+        this.setState.backgroundColor = "green";
     }
 
     quickSort() {
@@ -118,6 +132,9 @@ export default class SortingVisualizer extends React.Component {
     render() {
         const {array} = this.state;
 
+        //let backgroundColor = this.state.sorted ? "red" : "green";
+        let background = this.state.backgroundColor;
+
         return (
             <div>
             <button onClick={() => this.resetArray() }>Generate New Array</button>
@@ -131,7 +148,10 @@ export default class SortingVisualizer extends React.Component {
                     <div 
                         className="array-bar" 
                         key={idx}
-                        style={{height: `${value}px`}}
+                        style={{
+                            height: `${value}px`,
+                            backgroundColor: `${background}`
+                        }}
                     >
                     </div>
                 ))}

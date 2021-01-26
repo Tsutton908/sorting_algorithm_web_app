@@ -14,7 +14,6 @@ function bubbleSort(array) {
             if (x > y) {
                 swap(array, j, j+1, animations);
             } 
-
         }
     }
 
@@ -22,8 +21,9 @@ function bubbleSort(array) {
     //return animations;
     //return array;
 }
-
+ 
 function swap(array, i, j, animations) {
+
     var temp = array[i];
     array[i] = array[j];
     array[j] = temp;
