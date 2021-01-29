@@ -8,8 +8,6 @@ import selectionSort from './sortingAlgorithms/selectionSort';
 import Slider from './Slider';
 
 //const NumberOfArrayBars = 310;
-const AnimationSpeed = 1;
- 
 
 export default class SortingVisualizer extends React.Component {
     constructor(props) {
@@ -21,10 +19,11 @@ export default class SortingVisualizer extends React.Component {
             speed: {
                 value: 2,
                 min: 1,
-                max: 100,
+                max: 40,
 
             },
-            numberOfArrayBars: 310,
+            numberOfArrayBars: 20,
+            animationSpeed: 2,
         };
     }
 
@@ -64,6 +63,7 @@ export default class SortingVisualizer extends React.Component {
 
     mergeSort() {
         const animations = mergeSort(this.state.array);
+        let AnimationSpeed = this.state.animationSpeed;
         
         for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
@@ -88,7 +88,7 @@ export default class SortingVisualizer extends React.Component {
                 }, i * AnimationSpeed);
             }
         }
-        console.log(animations);
+        //console.log(animations);
         //this.setState.sorted=true;
         this.setState.backgroundColor = "green";
     }
@@ -135,6 +135,7 @@ export default class SortingVisualizer extends React.Component {
         }
         */
         //console.log(animations);
+        console.log(Math.floor(window.innerwidth / (this.state.array.length * 2)));
     }
 
 
@@ -160,6 +161,29 @@ export default class SortingVisualizer extends React.Component {
             })
         }; */
 
+        var numWidth = array.length < 190 ? Math.floor(window.innerWidth / (array.length * 3)) : 3;
+        console.log(numWidth);
+
+        var numMargin = array.length < 10 ?
+                33 : array.length < 20 ?
+                    32 : array.length <= 40 ?
+                    31 : array.length <= 100 ?
+                        30 : array.length <= 200 ?
+                        24 : array.length <= 260 ?
+                            16 : array.length <= 310 ?
+                            10 : 3.5;
+
+        /*const color = numWidth > 5 ? "white" : "transparent";
+
+        var numFont = numWidth > 70 ?
+                20 : numWidth > 60 ?
+                18 : numWidth > 50 ?
+                    16 : numWidth > 40 ?
+                    14 : numWidth > 30 ?
+                        12 : numWidth > 20 ?
+                        10 : 8;
+        */
+
         return (
             <div>
             <button onClick={() => this.resetArray() }>Generate New Array</button>
@@ -173,7 +197,7 @@ export default class SortingVisualizer extends React.Component {
                 type="range"
                 value={this.state.numberOfArrayBars}
                 min="1"
-                max="310"
+                max="360"
                 style={{background: "green", cursor: "pointer"}}
                 onChange={(event) => {
                     var array= [];
@@ -189,18 +213,39 @@ export default class SortingVisualizer extends React.Component {
                     this.setState({array});
                 }}
             />
-            <div className="array-container">
-                {array.map((value,idx) => (
-                    <div 
-                        className="array-bar" 
-                        key={idx}
-                        style={{
-                            height: `${value}px`,
-                            backgroundColor: `${background}`
-                        }}
-                    >
-                    </div>
-                ))}
+            <input
+                id="changeSpeed"
+                type="range"
+                value={this.state.animationSpeed}
+                min="1"
+                max="50"
+                style={{background: "green", cursor: "pointer"}}
+                onChange={(event) => {
+                    this.setState({
+                        animationSpeed: event.target.value,
+                    })
+                }}
+            />
+            <div className="array-body">
+                <div 
+                    className="array-container"
+                    style={{
+                        left: `${numMargin}%`
+                    }}
+                >
+                    {array.map((value,idx) => (
+                        <div 
+                            className="array-bar" 
+                            key={idx}
+                            style={{
+                                height: `${value}px`,
+                                backgroundColor: `${background}`,
+                                width: `${numWidth}px`,
+                            }}
+                        >
+                        </div>
+                    ))}
+                </div>
             </div>
             </div>
         );

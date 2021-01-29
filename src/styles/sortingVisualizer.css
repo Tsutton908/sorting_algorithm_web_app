@@ -1,7 +1,13 @@
+.array-body {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
 .array-container {
   position: absolute;
-  left: 100px;
-  bottom: 0px;
+  /*left: 100px;*/
+  bottom: 2px;
 }
 
 .array-bar {
