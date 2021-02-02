@@ -198,6 +198,7 @@ export default class SortingVisualizer extends React.Component {
                 value={this.state.numberOfArrayBars}
                 min="1"
                 max="360"
+                step="3"
                 style={{background: "green", cursor: "pointer"}}
                 onChange={(event) => {
                     var array= [];
@@ -206,7 +207,7 @@ export default class SortingVisualizer extends React.Component {
                         numberOfArrayBars: event.target.value,
                     })
 
-                    for (let i = 0; i < this.state.numberOfArrayBars; i++) {
+                    for (let i = 1; i < this.state.numberOfArrayBars; i++) {
                         array.push(randomIntFromInterval(5, 730));
                     }
                     
