@@ -37,6 +37,8 @@ function mergeSort(array) {
     const auxiliaryArray = array.slice();
 
     mergeSortHelper(array, 0, array.length - 1, auxiliaryArray, animations);
+    
+    console.log(animations);
     return animations;
 }
 

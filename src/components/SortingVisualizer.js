@@ -17,9 +17,9 @@ export default class SortingVisualizer extends React.Component {
             sorted: false,
             backgroundColor: "red",
             speed: {
-                value: 2,
+                value: 400,
                 min: 1,
-                max: 40,
+                max: 400,
 
             },
             numberOfArrayBars: 20,
@@ -108,7 +108,40 @@ export default class SortingVisualizer extends React.Component {
     }
 
     bubbleSort() {
-        const animations = bubbleSort(this.state.array);
+        let AnimationSpeed = this.state.animationSpeed;
+        const animations = bubbleSort(this.state.array, AnimationSpeed);
+
+
+        for (var i = 0; i < animations.length - 1; i++) {
+            let blocks = document.querySelectorAll(".array-bar");
+            //const isColorChange = i % 2 !== 1;
+
+                const [barOneIdx, barTwoIdx] = animations[i];
+                const barOneStyle = blocks[barOneIdx].style;
+                //const barTwoStyle = blocks[barTwoIdx].style;
+
+                if (barOneIdx < animations.length) {
+                    const color = i % 2 === 0 ? 'red': 'turquoise';
+                    setTimeout(() => {
+                        barOneStyle.backgroundColor = color;
+                        //barTwoStyle.backgroundColor = color;
+                    }, i * AnimationSpeed);
+                }
+
+                /*setTimeout(() => {
+                    barOneStyle.backgroundColor = color;
+                    //barTwoStyle.backgroundColor = color;
+                }, i * AnimationSpeed);
+                */
+
+                setTimeout(() => {
+                    const [barOneIdx, newHeight] = animations[i]; 
+                    const barOneStyle = blocks[barOneIdx].style;
+                    barOneStyle.height = `${newHeight}px`;
+                }, i * AnimationSpeed);
+
+            //blocks[barOneIdx].style.backgroundColor = "#FF4949";
+        }
 
         /*for (let i = 0; i < animations.length; i++) {
             const arrayBars = document.getElementsByClassName('array-bar');
@@ -132,10 +165,9 @@ export default class SortingVisualizer extends React.Component {
                     barOneStyle.height = `${newHeight}px`;
                 }, i * AnimationSpeed);
             }
-        }
-        */
-        //console.log(animations);
-        console.log(Math.floor(window.innerwidth / (this.state.array.length * 2)));
+        } */
+        console.log(animations.length);
+        //console.log(Math.floor(window.innerwidth / (this.state.array.length * 2)));
     }
 
 
@@ -186,17 +218,19 @@ export default class SortingVisualizer extends React.Component {
 
         return (
             <div>
-            <button onClick={() => this.resetArray() }>Generate New Array</button>
-            <button onClick={() => this.mergeSort()}>Merge Sort</button>
-            <button onClick={() => this.quickSort()}>Quick Sort</button>
-            <button onClick={() => this.heapSort()}>Heap Sort</button>
-            <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-            <button onClick={() => this.selectionSort()}>Selection Sort</button>
+                <div className="header">
+            <button className="myButton" onClick={() => this.resetArray() }>Generate New Array</button>
+            <button className="sortButton" onClick={() => this.mergeSort()}>Merge Sort</button>
+            <button className="sortButton" onClick={() => this.quickSort()}>Quick Sort</button>
+            <button className="sortButton" onClick={() => this.heapSort()}>Heap Sort</button>
+            <button className="sortButton" onClick={() => this.bubbleSort()}>Bubble Sort</button>
+            <button className="sortButton" onClick={() => this.selectionSort()}>Selection Sort</button>
             <input
                 id="changeSize"
+                className="button"
                 type="range"
                 value={this.state.numberOfArrayBars}
-                min="1"
+                min="3"
                 max="360"
                 step="3"
                 style={{background: "green", cursor: "pointer"}}
@@ -214,12 +248,14 @@ export default class SortingVisualizer extends React.Component {
                     this.setState({array});
                 }}
             />
+            <div className="sliderValueSize">Size of Array: {this.state.numberOfArrayBars}</div>
             <input
                 id="changeSpeed"
+                className="button"
                 type="range"
                 value={this.state.animationSpeed}
                 min="1"
-                max="50"
+                max="100"
                 style={{background: "green", cursor: "pointer"}}
                 onChange={(event) => {
                     this.setState({
@@ -227,6 +263,8 @@ export default class SortingVisualizer extends React.Component {
                     })
                 }}
             />
+            <div className="sliderValueSpeed">Sorting Speed: {this.state.animationSpeed}</div>
+            </div>
             <div className="array-body">
                 <div 
                     className="array-container"
@@ -248,6 +286,12 @@ export default class SortingVisualizer extends React.Component {
                     ))}
                 </div>
             </div>
+                <div className="bottom-bar">
+
+                </div>
+                <div className="body">
+
+                </div>
             </div>
         );
     }

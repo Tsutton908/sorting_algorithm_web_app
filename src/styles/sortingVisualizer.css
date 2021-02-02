@@ -1,3 +1,66 @@
+* {
+  background-color: #b0b0b0;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #0f807e;
+  z-index: 0;
+  opacity: 1;
+  box-shadow: 0px 4px 15px 0px #474747;
+}
+
+.myButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  box-shadow: inset 0px 0px 15px 3px #084a48;
+  background: linear-gradient(to bottom, #0b5c5a 5%, #084a48 100%);
+  background-color: #2e466e;
+  border-radius: 17px;
+  border: 0px solid #1f2f47;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 6px 13px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #263666;
+}
+.myButton:hover {
+  background: linear-gradient(to bottom, #0f807e 5%, #0f807e 100%);
+  background-color: #0f807e;
+}
+
+.sortButton {
+  position: relative;
+  top: 20px;
+  left: 500px;
+  margin: 0 4px;
+  box-shadow: inset 0px 0px 15px 3px #084a48;
+  background: linear-gradient(to bottom, #0b5c5a 5%, #084a48 100%);
+  background-color: #2e466e;
+  border-radius: 17px;
+  border: 0px solid #1f2f47;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 6px 13px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #263666;
+}
+.sortButton:hover {
+  background: linear-gradient(to bottom, #0f807e 5%, #0f807e 100%);
+  background-color: #0f807e;
+}
+
 .array-body {
   width: 100%;
   height: 100%;
@@ -20,4 +83,122 @@
 .test {
   position: absolute;
   top: 60%;
+}
+
+.bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35px;
+  background-color: #0f807e;
+}
+
+input[type="range"] {
+  position: relative;
+  left: 40%;
+  top: 18px;
+  width: 10%;
+  margin: 9.3px 15px;
+  background-color: transparent;
+  -webkit-appearance: none;
+  display: inline-block;
+}
+input[type="range"]:focus {
+  outline: none;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  background: #0b5c5a;
+  border: 0px solid #010101;
+  border-radius: 1.3px;
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  margin-top: -9.5px;
+  width: 8px;
+  height: 25px;
+  background: #ffffff;
+  border: 0px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+input[type="range"]::-moz-range-track {
+  background: #3071a9;
+  border: 0px solid #010101;
+  border-radius: 1.3px;
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 27px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type="range"]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 10.3px 0;
+  color: transparent;
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+}
+input[type="range"]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+}
+input[type="range"]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+}
+input[type="range"]::-ms-thumb {
+  width: 12px;
+  height: 27px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0px;
+  /*Needed to keep the Edge thumb centred*/
+}
+input[type="range"]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type="range"]:focus::-ms-fill-upper {
+  background: #367ebd;
+}
+/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the virtical space around the range input in IE*/
+@supports (-ms-ime-align: auto) {
+  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+  input[type="range"] {
+    margin: 0;
+    /*Edge starts the margin from the thumb, not the track as other browsers do*/
+  }
+}
+
+.sliderValueSize {
+  background-color: transparent;
+  position: absolute;
+  top: 47px;
+  left: 70%;
+}
+
+.sliderValueSpeed {
+  background-color: transparent;
+  position: absolute;
+  top: 47px;
+  left: 82%;
 }
