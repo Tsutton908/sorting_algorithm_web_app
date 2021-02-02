@@ -263,7 +263,7 @@ export default class SortingVisualizer extends React.Component {
                     })
                 }}
             />
-            <div className="sliderValueSpeed">Sorting Speed: {this.state.animationSpeed}</div>
+            <div className="sliderValueSpeed">Sorting Speed: {this.state.animationSpeed === 1 ? 1 : this.state.animationSpeed}</div>
             </div>
             <div className="array-body">
                 <div 
