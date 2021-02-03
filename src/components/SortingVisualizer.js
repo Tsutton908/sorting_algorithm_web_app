@@ -91,6 +91,7 @@ export default class SortingVisualizer extends React.Component {
         //console.log(animations);
         //this.setState.sorted=true;
         this.setState.backgroundColor = "green";
+        console.log(this.state.array);
     }
 
     quickSort() {

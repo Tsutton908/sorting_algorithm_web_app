@@ -70,7 +70,7 @@
 .array-container {
   position: absolute;
   /*left: 100px;*/
-  bottom: 2px;
+  bottom: 30px;
 }
 
 .array-bar {
@@ -194,6 +194,9 @@ how to remove the virtical space around the range input in IE*/
   position: absolute;
   top: 47px;
   left: 70%;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
 }
 
 .sliderValueSpeed {
@@ -201,4 +204,7 @@ how to remove the virtical space around the range input in IE*/
   position: absolute;
   top: 47px;
   left: 82%;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
 }
