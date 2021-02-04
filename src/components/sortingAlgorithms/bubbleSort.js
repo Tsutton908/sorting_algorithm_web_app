@@ -1,8 +1,11 @@
-function bubbleSort(array, AnimationSpeed) {
+function bubbleSort(array, AnimationSpeed, active) {
     const animations = [];
     let blocks = document.querySelectorAll(".array-bar");
 
     if (array.legnth <= 1) return array;
+
+    active = false;
+    
 
     for (var i = 0; i < array.length; i++) {
         for (var j = 0; j < array.length - i - 1; j++) {
@@ -17,13 +20,15 @@ function bubbleSort(array, AnimationSpeed) {
 
             if (x > y) {
                 swap(array, j, j+1, animations);
-                //animations.push([i, ])
+                animations.push([j, x]);
+                active = true;
             } 
+            animations.push([j, x]);
 
             //blocks[barOneIdx].style.backgroundColor = "#FF4949";
         }
     }
-
+    console.log(array);
     return animations;
     //return array;
 }
@@ -33,7 +38,7 @@ function swap(array, i, j, animations) {
     var temp = array[i];
     array[i] = array[j];
     array[j] = temp;
-    animations.push([i, temp]);
+    //animations.push([i, temp]);
     console.log(animations);
 }
 
